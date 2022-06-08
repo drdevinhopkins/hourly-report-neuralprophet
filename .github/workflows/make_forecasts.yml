@@ -1,0 +1,40 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Make Forecasts
+
+on:
+  schedule:
+    * is a special character in YAML so you have to quote this string
+    - cron: "10 * * * *"
+# on:
+#   workflow_run:
+#     workflows: ["Update data with current hourly report"]
+#     types:
+#       - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - name: Setup timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: America/Montreal
+      - name: Forecast Inflow
+        run: |
+          python scripts/forecast_inflow.py
+      - name: Forecast Prepod
+        run: |
+          python scripts/forecast_prepod.py
+      - name: Forecast VerticalTBS
+        run: |
+          python scripts/forecast_verticalTBS.py
+      - uses: stefanzweifel/git-auto-commit-action@v4
