@@ -4,7 +4,7 @@ from neuralprophet import NeuralProphet, set_log_level
 
 loaded_model = pickle.load(open('models/inflow_forecast_model.pkl', 'rb'))
 
-target_column = 'Total inflow hrly'
+target_column = 'Total Inflow hrly'
 df = pd.read_csv('https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/since-2020.csv')
 df.ds = pd.to_datetime(df.ds)
 df = df.drop(['Date', 'Time'], axis=1)
