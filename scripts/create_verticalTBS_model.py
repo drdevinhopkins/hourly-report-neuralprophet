@@ -4,7 +4,7 @@ import pickle
 
 set_log_level("ERROR")
 
-target_column = 'Triage hallway pts'
+target_column = 'Total Vertical TBS'
 
 df = pd.read_csv('https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/since-2020.csv')
 df.ds = pd.to_datetime(df.ds)
@@ -37,5 +37,5 @@ metrics = m.fit(df,
                 )
 print(metrics.tail(1))
 
-with open('models/prepod_forecast_model.pkl', "wb") as f:
+with open('models/verticalTBS_forecast_model.pkl', "wb") as f:
     pickle.dump(m, f)
