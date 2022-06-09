@@ -40,3 +40,5 @@ jobs:
         run: |
           python scripts/create_verticalTBS_model.py
       - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: '--force'
