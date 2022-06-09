@@ -7,8 +7,8 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: "0 1 * * *"
-  # push:
-  #   branches: [main]
+  push:
+    branches: [main]
 # on:
 #   workflow_run:
 #     workflows: ["Update data with current hourly report"]
