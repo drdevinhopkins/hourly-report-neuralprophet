@@ -4,11 +4,12 @@
 name: Make Forecasts
 
 on:
-  schedule:
+  workflow_dispatch:
+#   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: "10 * * * *"
-  push:
-    branches: [main]
+#     - cron: "10 * * * *"
+#   push:
+#     branches: [main]
 # on:
 #   workflow_run:
 #     workflows: ["Update data with current hourly report"]
