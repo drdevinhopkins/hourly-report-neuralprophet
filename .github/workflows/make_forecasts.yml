@@ -41,5 +41,5 @@ jobs:
         run: |
           python scripts/forecast_verticalTBS.py
       - uses: stefanzweifel/git-auto-commit-action@v4
-          with:
-            push_options: '--force'
+        with:
+          push_options: '--force'
