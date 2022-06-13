@@ -18,6 +18,8 @@ regressors.remove('ds')
 weather = pd.read_csv('https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/weatherArchiveAndForecast.csv')
 weather.ds = pd.to_datetime(weather.ds)
 
+last_timestamp = df.loc[len(df)-1].ds
+
 df = df.merge(weather, on='ds')
 
 future = pd.concat([df.tail(48),weather[weather.ds>last_timestamp].head(12)])
