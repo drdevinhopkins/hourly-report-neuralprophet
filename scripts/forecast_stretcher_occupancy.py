@@ -2,7 +2,7 @@ import pickle
 import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level
 
-loaded_model = pickle.load(open('models/stretcher_occupancy_model.pkl', 'rb'))
+loaded_model = pickle.load(open('models/stretcher_occupancy_forecast_model.pkl', 'rb'))
 
 target_column = 'Total Stretcher pts'
 df = pd.read_csv('https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/since-2020.csv')
