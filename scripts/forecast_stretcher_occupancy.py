@@ -22,8 +22,8 @@ forecast = loaded_model.predict(future, raw=True, decompose=False)
 start = forecast.values.tolist()[0][0]
 forecast_length = len(forecast.values.tolist()[0][1:])
 
-forecast_output = pd.DataFrame(columns=['ds','inflow','timestamp'])
+forecast_output = pd.DataFrame(columns=['ds','stretchers','timestamp'])
 forecast_output['ds'] = pd.date_range(start=start, periods=forecast_length, freq='H')
-forecast_output['inflow'] = forecast.values.tolist()[0][1:]
+forecast_output['stretchers'] = forecast.values.tolist()[0][1:]
 forecast_output['timestamp'] = pd.Timestamp.now().round('S').replace(tzinfo=None)
 forecast_output.to_csv('forecasts/stretcher_occupancy.csv', index=False)
