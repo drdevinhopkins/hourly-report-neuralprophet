@@ -45,6 +45,12 @@ jobs:
       - name: Create Stretcher Occupancy Model
         run: |
           python scripts/create_stretcher_occupancy_model.py
+      - name: Create Daily Visits Model
+        run: |
+          python scripts/create_daily_visits_model.py
+      - name: Create Daily Visits Model With Weather
+        run: |
+          python scripts/create_daily_visits_model_with_weather.py
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           push_options: '--force'

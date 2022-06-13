@@ -46,6 +46,12 @@ jobs:
       - name: Forecast Stretcher Occupancy
         run: |
           python scripts/forecast_stretcher_occupancy.py
+      - name: Forecast Daily Visits
+        run: |
+          python scripts/forecast_daily_visits.py
+      - name: Forecast Daily Visits With Weather
+        run: |
+          python scripts/forecast_daily_visits_with_weather.py
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           push_options: '--force'
