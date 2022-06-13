@@ -34,6 +34,9 @@ jobs:
       - name: Forecast Inflow
         run: |
           python scripts/forecast_inflow.py
+      - name: Forecast Inflow with weather
+        run: |
+          python scripts/forecast_inflow_with_weather.py
       - name: Forecast Prepod
         run: |
           python scripts/forecast_prepod.py

@@ -33,6 +33,9 @@ jobs:
       - name: Create Inflow Model
         run: |
           python scripts/create_inflow_model.py
+      - name: Create Inflow Model with Weather
+        run: |
+          python scripts/create_inflow_model_with_weather.py
       - name: Create Prepod Model
         run: |
           python scripts/create_prepod_model.py
