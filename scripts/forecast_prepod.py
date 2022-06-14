@@ -19,10 +19,10 @@ future = loaded_model.make_future_dataframe(df, periods=12) # periods=m.n_foreca
 forecast = loaded_model.predict(future, raw=True, decompose=False)
 
 start = forecast.values.tolist()[-1][0]
-forecast_length = len(forecast.values.tolist()[0][1:])
+forecast_length = len(forecast.values.tolist()[-1][1:])
 
 forecast_output = pd.DataFrame(columns=['ds','prepod','timestamp'])
 forecast_output['ds'] = pd.date_range(start=start, periods=forecast_length, freq='H')
-forecast_output['prepod'] = forecast.values.tolist()[0][1:]
+forecast_output['prepod'] = forecast.values.tolist()[-1][1:]
 forecast_output['timestamp'] = pd.Timestamp.now().round('S').replace(tzinfo=None)
 forecast_output.to_csv('forecasts/prepod.csv', index=False)
