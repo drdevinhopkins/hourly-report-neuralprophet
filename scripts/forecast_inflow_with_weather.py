@@ -11,12 +11,14 @@ df = df.drop(['Date', 'Time'], axis=1)
 df = df.sort_values(by='ds', ascending=True)
 df.rename(columns = {target_column:'y', 'Adm. requests cum':"Adm requests cum", 'Pts.waiting for admission CUM':'Pts waiting for admission CUM'}, inplace = True)
 df.dropna(inplace=True)
+df = df.reset_index(drop=True)
 regressors = df.columns.tolist()
 regressors.remove('y')
 regressors.remove('ds')
 
 weather = pd.read_csv('https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/weatherArchiveAndForecast.csv')
 weather.ds = pd.to_datetime(weather.ds)
+weather = weather.sort_values(by='ds', ascending=True)
 
 last_timestamp = df.loc[len(df)-1].ds
 
