@@ -7,8 +7,8 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: "0 1 * * *"
-#   push:
-#     branches: [main]
+  push:
+    branches: [main]
 # on:
 #   workflow_run:
 #     workflows: ["Update data with current hourly report"]
@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.x'
           cache: 'pip'
       - run: pip install -r requirements.txt
       - name: Setup timezone
