@@ -1,1 +1,1 @@
-https://github.com/ourownstory/neural_prophet.git
+git+https://github.com/ourownstory/neural_prophet.git
