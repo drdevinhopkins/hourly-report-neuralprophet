@@ -9,6 +9,7 @@ loaded_model = pickle.load(open('models/daily_visits_forecast_model.pkl', 'rb'))
 df = pd.read_csv('https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-visits.csv')
 df.ds = pd.to_datetime(df.ds)
 df = df.sort_values(by='ds')
+df['ID']='test'
 
 future = loaded_model.make_future_dataframe(df, periods=8) # periods=m.n_forecasts, n_historic_predictions=False
 

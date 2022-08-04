@@ -23,6 +23,7 @@ weather = weather[['ds', 'tempmax', 'tempmin', 'temp', 'feelslikemax', 'feelslik
                    'snowdepth', 'windgust', 'windspeed', 'sealevelpressure', 'cloudcover', 'visibility', 'solarradiation', 'solarenergy', 'uvindex', 'moonphase']]
 
 df = df.merge(weather, on='ds')
+df['ID']='test'
 
 future = pd.concat(
     [df.tail(4*7+1), weather[weather.ds > last_timestamp].head(8)])

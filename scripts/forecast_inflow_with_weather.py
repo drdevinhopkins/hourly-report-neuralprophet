@@ -23,6 +23,7 @@ weather = weather.sort_values(by='ds', ascending=True)
 last_timestamp = df.loc[len(df)-1].ds
 
 df = df.merge(weather, on='ds')
+df['ID']='test'
 
 future = pd.concat([df.tail(48),weather[weather.ds>last_timestamp].head(12)])
 

@@ -14,6 +14,7 @@ df.dropna(inplace=True)
 regressors = df.columns.tolist()
 regressors.remove('y')
 regressors.remove('ds')
+df['ID']='test'
 
 future = loaded_model.make_future_dataframe(df, periods=12) # periods=m.n_forecasts, n_historic_predictions=False
 
