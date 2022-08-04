@@ -27,6 +27,7 @@ df['ID']='test'
 
 future = pd.concat(
     [df.tail(4*7+1), weather[weather.ds > last_timestamp].head(8)])
+future['ID']='test'
 
 forecast = loaded_model.predict(future, raw=True, decompose=False)
 

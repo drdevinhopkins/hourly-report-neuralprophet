@@ -26,6 +26,7 @@ df = df.merge(weather, on='ds')
 df['ID']='test'
 
 future = pd.concat([df.tail(48),weather[weather.ds>last_timestamp].head(12)])
+future['ID']='test'
 
 # future = loaded_model.make_future_dataframe(df, periods=12) # periods=m.n_forecasts, n_historic_predictions=False
 
