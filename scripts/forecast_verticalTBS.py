@@ -37,4 +37,4 @@ for ds in pd.date_range(start=start, periods=forecast_length, freq='H'):
     forecast_output_list.append(
         {'ds': ds, 'verticalTBS': forecast_trimmed.loc[ds]['yhat'+str(i)], 'timestamp': timestamp})
 forecast_output = pd.DataFrame(forecast_output_list)
-forecast_output
+forecast_output.to_csv('forecasts/verticalTBS.csv', index=False)
