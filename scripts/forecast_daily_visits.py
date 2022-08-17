@@ -41,7 +41,7 @@ forecast_length = len(forecast_trimmed.index.tolist())
 i = 0
 timestamp = pd.Timestamp.now().round('S').replace(tzinfo=None)
 forecast_output_list = []
-for ds in pd.date_range(start=start, periods=forecast_length, freq='H'):
+for ds in pd.date_range(start=start, periods=forecast_length, freq='D'):
     i = i+1
     forecast_output_list.append(
         {'ds': ds, 'visits': forecast_trimmed.loc[ds]['yhat'+str(i)], 'timestamp': timestamp})
