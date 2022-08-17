@@ -30,7 +30,7 @@ jobs:
       - name: Stretcher Occupancy
         if: always()
         run: |
-          python scripts/strecher_occupancy.py
+          python scripts/stretcher_occupancy.py
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: always()
         with:
