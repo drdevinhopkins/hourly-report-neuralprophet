@@ -43,10 +43,10 @@ jobs:
         if: always()
         run: |
           python scripts/forecast_verticalTBS.py
-      # - name: Forecast Stretcher Occupancy
-      #   if: always()
-      #   run: |
-      #     python scripts/forecast_stretcher_occupancy.py
+      - name: Stretcher Occupancy
+        if: always()
+        run: |
+          python scripts/stretcher_occupancy.py
       - name: Forecast Daily Visits
         if: always()
         run: |
