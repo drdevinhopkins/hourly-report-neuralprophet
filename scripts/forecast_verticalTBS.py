@@ -27,6 +27,7 @@ forecast = loaded_model.predict(future,
                                 )
 
 forecast_trimmed = forecast[forecast.y.isnull()].set_index('ds')
+forecast_trimmed.to_csv('forecasts/verticalTBS_raw.csv')
 start = forecast_trimmed.index.tolist()[0]
 forecast_length = len(forecast_trimmed.index.tolist())
 i = 0
