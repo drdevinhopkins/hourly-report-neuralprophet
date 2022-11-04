@@ -49,7 +49,7 @@ jobs:
       - name: Stretcher Occupancy
         if: always()
         run: |
-          python scripts/stretcher_occupancy.py
+          python scripts/forecast_stretcher_occupancy.py
       - name: Forecast Daily Visits
         if: always()
         run: |
