@@ -20,10 +20,10 @@ regressors.remove('ds')
 
 m = NeuralProphet(
     # growth='off',
-    yearly_seasonality=False,
+    yearly_seasonality=True,
     weekly_seasonality=True,
     daily_seasonality=True,
-    n_lags=48,
+    n_lags=4,
     n_forecasts=12,
     changepoints_range=0.95,
     n_changepoints=50,
