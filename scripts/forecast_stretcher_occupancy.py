@@ -5,7 +5,7 @@ import pickle
 set_log_level("ERROR")
 
 m = pickle.load(
-    open('models/stretcher_occupancy_forecast_model.pkl', 'rb'))
+    open('models/stretcher_occupancy_model.pkl', 'rb'))
 
 target_column = 'Total Stretcher pts'
 df = pd.read_csv(
