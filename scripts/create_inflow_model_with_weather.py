@@ -1,10 +1,17 @@
+from comet_ml import Experiment
 import pandas as pd
-from neuralprophet import NeuralProphet, set_log_level
+from neuralprophet import NeuralProphet, set_log_level, save
 import pickle
+
+experiment = Experiment(
+    api_key="y8osrrA81fMUFOJMmSqtvuFNO",
+    project_name="inflow-with-weather",
+    workspace="drdevinhopkins",
+)
 
 set_log_level("ERROR")
 
-target_column = 'Total Inflow hrly'
+target_column = 'Total Vertical TBS'
 
 df = pd.read_csv(
     'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/since-2020.csv')
@@ -18,30 +25,22 @@ regressors = df.columns.tolist()
 regressors.remove('y')
 regressors.remove('ds')
 
-weather = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/weatherArchiveAndForecast.csv')
-weather.ds = pd.to_datetime(weather.ds)
-
-df = df.merge(weather, on='ds')
-
-weather_regressors = ['temp', 'dew', 'humidity',
-                      'precip', 'windspeed', 'sealevelpressure']
-
-m = NeuralProphet(
+params = {
     # growth='off',
-    yearly_seasonality=True,
-    weekly_seasonality=True,
-    daily_seasonality=True,
-    n_lags=4,
-    n_forecasts=12,
-    changepoints_range=0.95,
-    n_changepoints=50,
+    'yearly_seasonality': False,
+    'weekly_seasonality': True,
+    'daily_seasonality': True,
+    'n_lags': 4,
+    'n_forecasts': 12,
+    'changepoints_range': 0.95,
+    'n_changepoints': 50,
+    'quantiles': [0.2, 0.5, 0.8]
     # num_hidden_layers=4,
     # d_hidden=36,
     # learning_rate=0.005,
-)
-for reg in weather_regressors:
-    m = m.add_future_regressor(name=reg)
+}
+
+m = NeuralProphet(**params)
 m = m.add_lagged_regressor(names=regressors)
 m = m.add_country_holidays("CA")
 metrics = m.fit(df,
@@ -50,5 +49,17 @@ metrics = m.fit(df,
                 )
 print(metrics.tail(1))
 
-with open('models/inflow_forecast_model_with_weather.pkl', "wb") as f:
+experiment.log_parameters(params)
+experiment.log_metrics(metrics.tail(1).iloc[0].to_dict())
+
+save(m, "models/inflow-with-weather.np")
+
+experiment.log_model("inflow-with-weather", "models/inflow-with-weather.np")
+
+
+with open('models/verticalTBS_forecast_model.pkl', "wb") as f:
     pickle.dump(m, f)
+
+experiment.end()
+
+experiment.end()
