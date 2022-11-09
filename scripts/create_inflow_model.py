@@ -2,9 +2,10 @@ from comet_ml import Experiment
 import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, save
 import pickle
+import os
 
 experiment = Experiment(
-    api_key="y8osrrA81fMUFOJMmSqtvuFNO",
+    api_key=os.environ.get('COMET_ML_API_KEY'),
     project_name="inflow",
     workspace="drdevinhopkins",
 )
