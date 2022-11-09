@@ -61,7 +61,7 @@ experiment.log_metrics(metrics.tail(1).iloc[0].to_dict())
 
 save(m, "models/daily-visits-with-weather.np")
 
-experiment.log_model("inflow", "models/daily-visits-with-weather.np")
+experiment.log_model("daily-visits-with-weather", "models/daily-visits-with-weather.np")
 
 with open('models/daily_visits_forecast_model_with_weather.pkl', "wb") as f:
     pickle.dump(m, f)
