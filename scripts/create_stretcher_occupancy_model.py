@@ -59,9 +59,6 @@ save(m, "models/stretcher-occupancy.np")
 
 experiment.log_model("stretcher-occupancy", "models/stretcher-occupancy.np")
 
-experiment.register_model("stretcher-occupancy")
-
-
 with open('models/stretcher_occupancy_model.pkl', "wb") as f:
     pickle.dump(m, f)
 
