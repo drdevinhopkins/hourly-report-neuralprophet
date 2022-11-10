@@ -1,4 +1,5 @@
 from comet_ml import Experiment
+from comet_ml.api import API, APIExperiment
 import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, save
 import pickle
@@ -9,6 +10,7 @@ experiment = Experiment(
     project_name="daily-visits",
     workspace="drdevinhopkins",
 )
+api = API(os.environ.get('COMET_ML_API_KEY'))
 
 set_log_level("ERROR")
 
@@ -52,4 +54,13 @@ experiment.log_model("daily-visits", "models/daily-visits.np")
 with open('models/daily_visits_forecast_model.pkl', "wb") as f:
     pickle.dump(m, f)
 
+experiment_name = experiment.name
+
 experiment.end()
+
+
+api.delete_registry_model('drdevinhopkins', 'daily-visits')
+
+apiexp = api.get('drdevinhopkins/daily-visits/'+experiment_name)
+
+apiexp.register_model('daily-visits')

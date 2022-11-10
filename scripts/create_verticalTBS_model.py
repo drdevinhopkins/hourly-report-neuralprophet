@@ -1,4 +1,5 @@
 from comet_ml import Experiment
+from comet_ml.api import API, APIExperiment
 import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, save
 import pickle
@@ -9,6 +10,7 @@ experiment = Experiment(
     project_name="verticalTBS",
     workspace="drdevinhopkins",
 )
+api = API(os.environ.get('COMET_ML_API_KEY'))
 
 set_log_level("ERROR")
 
@@ -61,4 +63,13 @@ experiment.log_model("verticalTBS", "models/verticalTBS.np")
 with open('models/verticalTBS_forecast_model.pkl', "wb") as f:
     pickle.dump(m, f)
 
+experiment_name = experiment.name
+
 experiment.end()
+
+
+api.delete_registry_model('drdevinhopkins', 'verticalTBS')
+
+apiexp = api.get('drdevinhopkins/verticalTBS/'+experiment_name)
+
+apiexp.register_model('verticalTBS')
