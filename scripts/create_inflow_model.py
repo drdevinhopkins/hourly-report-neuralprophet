@@ -67,8 +67,10 @@ experiment_name = experiment.name
 
 experiment.end()
 
-
-api.delete_registry_model('drdevinhopkins', 'inflow')
+try:
+    api.delete_registry_model('drdevinhopkins', 'inflow')
+except:
+    print('Failed to delete previous model')
 
 apiexp = api.get('drdevinhopkins/inflow/'+experiment_name)
 
