@@ -34,36 +34,43 @@ jobs:
         with:
           timezone: America/Montreal
       - name: Create Inflow Model
+        if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_inflow_model.py
       - name: Create Inflow Model with Weather
+        if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_inflow_model_with_weather.py
       - name: Create Prepod Model
+        if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_prepod_model.py
       - name: Create VerticalTBS Model
+        if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_verticalTBS_model.py
       - name: Create Stretcher Occupancy Model
+        if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_stretcher_occupancy_model.py
       - name: Create Daily Visits Model
+        if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_daily_visits_model.py
       - name: Create Daily Visits Model With Weather
+        if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
