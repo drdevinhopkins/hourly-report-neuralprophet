@@ -1,2 +1,2 @@
-neuralprophet==0.5.1
+neuralprophet==0.4.2
 comet_ml
