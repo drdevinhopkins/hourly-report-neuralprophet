@@ -1,11 +1,12 @@
 import pandas as pd
-from neuralprophet import NeuralProphet, set_log_level
+from neuralprophet import NeuralProphet, set_log_level, load
 import pickle
 
 set_log_level("ERROR")
 
-loaded_model = pickle.load(
-    open('models/daily_visits_forecast_model_with_weather.pkl', 'rb'))
+# loaded_model = pickle.load(
+#     open('models/daily_visits_forecast_model_with_weather.pkl', 'rb'))
+loaded_model = load("models/daily-visits-with-weather.np")
 
 df = pd.read_csv(
     'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-visits.csv')

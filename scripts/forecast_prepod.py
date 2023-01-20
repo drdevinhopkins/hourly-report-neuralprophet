@@ -1,8 +1,9 @@
 import pickle
 import pandas as pd
-from neuralprophet import NeuralProphet, set_log_level
+from neuralprophet import NeuralProphet, set_log_level, load
 
-loaded_model = pickle.load(open('models/prepod_forecast_model.pkl', 'rb'))
+# loaded_model = pickle.load(open('models/prepod_forecast_model.pkl', 'rb'))
+loaded_model = load("models/prepod.np")
 
 df = pd.read_csv(
     'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/since-2020.csv')

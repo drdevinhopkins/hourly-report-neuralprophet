@@ -1,9 +1,10 @@
 import pickle
 import pandas as pd
-from neuralprophet import NeuralProphet, set_log_level
+from neuralprophet import NeuralProphet, set_log_level, load
 
-loaded_model = pickle.load(
-    open('models/inflow_forecast_model_with_weather.pkl', 'rb'))
+# loaded_model = pickle.load(
+#     open('models/inflow_forecast_model_with_weather.pkl', 'rb'))
+loaded_model = load("models/inflow-with-weather.np")
 
 target_column = 'Total Inflow hrly'
 df = pd.read_csv(

@@ -1,8 +1,9 @@
 import pickle
 import pandas as pd
-from neuralprophet import NeuralProphet, set_log_level
+from neuralprophet import NeuralProphet, set_log_level, load
 
-loaded_model = pickle.load(open('models/verticalTBS_forecast_model.pkl', 'rb'))
+# loaded_model = pickle.load(open('models/verticalTBS_forecast_model.pkl', 'rb'))
+loaded_model = load("models/verticalTBS.np")
 
 target_column = 'Total Vertical TBS'
 df = pd.read_csv(

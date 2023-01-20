@@ -1,11 +1,12 @@
 import pandas as pd
-from neuralprophet import NeuralProphet, set_log_level
+from neuralprophet import NeuralProphet, set_log_level, load
 import pickle
 
 set_log_level("ERROR")
 
-m = pickle.load(
-    open('models/stretcher_occupancy_model.pkl', 'rb'))
+# m = pickle.load(
+#     open('models/stretcher_occupancy_model.pkl', 'rb'))
+m = load("models/stretcher-occupancy.np")
 
 target_column = 'Total Stretcher pts'
 df = pd.read_csv(
