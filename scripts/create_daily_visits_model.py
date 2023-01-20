@@ -51,8 +51,8 @@ save(m, "models/daily-visits.np")
 
 experiment.log_model("daily-visits", "models/daily-visits.np")
 
-with open('models/daily_visits_forecast_model.pkl', "wb") as f:
-    pickle.dump(m, f)
+# with open('models/daily_visits_forecast_model.pkl', "wb") as f:
+#     pickle.dump(m, f)
 
 experiment_name = experiment.name
 

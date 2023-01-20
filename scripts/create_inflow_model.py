@@ -60,8 +60,8 @@ save(m, "models/inflow.np")
 
 experiment.log_model("inflow", "models/inflow.np")
 
-with open('models/inflow_forecast_model.pkl', "wb") as f:
-    pickle.dump(m, f)
+# with open('models/inflow_forecast_model.pkl', "wb") as f:
+#     pickle.dump(m, f)
 
 experiment_name = experiment.name
 

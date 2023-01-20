@@ -60,8 +60,8 @@ save(m, "models/prepod.np")
 
 experiment.log_model("prepod", "models/prepod.np")
 
-with open('models/prepod_forecast_model.pkl', "wb") as f:
-    pickle.dump(m, f)
+# with open('models/prepod_forecast_model.pkl', "wb") as f:
+#     pickle.dump(m, f)
 
 experiment_name = experiment.name
 
