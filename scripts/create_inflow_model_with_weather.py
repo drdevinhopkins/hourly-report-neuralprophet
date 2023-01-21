@@ -14,7 +14,7 @@ api = API(os.environ.get('COMET_ML_API_KEY'))
 
 set_log_level("ERROR")
 
-target_column = 'Total Vertical TBS'
+target_column = 'Total Inflow hrly'
 
 df = pd.read_csv(
     'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/since-2020.csv')
