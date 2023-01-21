@@ -1,9 +1,17 @@
-import pickle
 import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, load
+import comet_ml
+import os
 
-# loaded_model = pickle.load(open('models/inflow_forecast_model.pkl', 'rb'))
-loaded_model = load("models/inflow.np")
+comet_ml_api_key = os.environ.get("COMET_ML_API_KEY")
+api = comet_ml.api.API(comet_ml_api_key)
+
+api.download_registry_model("drdevinhopkins", "inflow",
+                            version="1.0.0", output_path="./comet-ml-models/", expand=True, stage=None)
+
+loaded_model = load("comet-ml-models/inflow.np")
+
+set_log_level("ERROR")
 
 target_column = 'Total Inflow hrly'
 df = pd.read_csv(

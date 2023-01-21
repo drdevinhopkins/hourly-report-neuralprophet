@@ -1,12 +1,17 @@
 import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, load
-import pickle
+import comet_ml
+import os
+
+comet_ml_api_key = os.environ.get("COMET_ML_API_KEY")
+api = comet_ml.api.API(comet_ml_api_key)
+
+api.download_registry_model("drdevinhopkins", "stretcher-occupancy",
+                            version="1.0.0", output_path="./comet-ml-models/", expand=True, stage=None)
+
+loaded_model = load("comet-ml-models/stretcher-occupancy.np")
 
 set_log_level("ERROR")
-
-# m = pickle.load(
-#     open('models/stretcher_occupancy_model.pkl', 'rb'))
-m = load("models/stretcher-occupancy.np")
 
 target_column = 'Total Stretcher pts'
 df = pd.read_csv(

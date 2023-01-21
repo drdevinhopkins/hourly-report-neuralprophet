@@ -1,12 +1,19 @@
 import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, load
-import pickle
+import comet_ml
+import os
+
+comet_ml_api_key = os.environ.get("COMET_ML_API_KEY")
+api = comet_ml.api.API(comet_ml_api_key)
+
+api.download_registry_model("drdevinhopkins", "daily-visits",
+                            version="1.0.0", output_path="./comet-ml-models/", expand=True, stage=None)
 
 set_log_level("ERROR")
 
 # loaded_model = pickle.load(
-#     open('models/daily_visits_forecast_model.pkl', 'rb'))
-loaded_model = load("models/daily-visits.np")
+#     open('models/daily_visits_forecast_model_with_weather.pkl', 'rb'))
+loaded_model = load("comet-ml-models/daily-visits.np")
 
 df = pd.read_csv(
     'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-visits.csv')

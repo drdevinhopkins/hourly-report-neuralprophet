@@ -1,9 +1,17 @@
-import pickle
 import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, load
+import comet_ml
+import os
 
-# loaded_model = pickle.load(open('models/verticalTBS_forecast_model.pkl', 'rb'))
-loaded_model = load("models/verticalTBS.np")
+comet_ml_api_key = os.environ.get("COMET_ML_API_KEY")
+api = comet_ml.api.API(comet_ml_api_key)
+
+api.download_registry_model("drdevinhopkins", "verticaltbs",
+                            version="1.0.0", output_path="./comet-ml-models/", expand=True, stage=None)
+
+loaded_model = load("comet-ml-models/verticaltbs.np")
+
+set_log_level("ERROR")
 
 target_column = 'Total Vertical TBS'
 df = pd.read_csv(
