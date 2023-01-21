@@ -7,7 +7,7 @@ comet_ml_api_key = os.environ.get("COMET_ML_API_KEY")
 api = comet_ml.api.API(comet_ml_api_key)
 
 api.download_registry_model("drdevinhopkins", "inflow-with-weather",
-                            version="1.0.0", output_path="./comet-ml-models/", expand=True, stage=None)
+                            version="1.0.0", output_path="comet-ml-models", expand=True, stage=None)
 
 loaded_model = load("comet-ml-models/inflow-with-weather.np")
 

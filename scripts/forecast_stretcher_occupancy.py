@@ -7,7 +7,7 @@ comet_ml_api_key = os.environ.get("COMET_ML_API_KEY")
 api = comet_ml.api.API(comet_ml_api_key)
 
 api.download_registry_model("drdevinhopkins", "stretcher-occupancy",
-                            version="1.0.0", output_path="./comet-ml-models/", expand=True, stage=None)
+                            version="1.0.0", output_path="comet-ml-models", expand=True, stage=None)
 
 loaded_model = load("comet-ml-models/stretcher-occupancy.np")
 
@@ -26,13 +26,13 @@ regressors = df.columns.tolist()
 regressors.remove('y')
 regressors.remove('ds')
 
-future = m.make_future_dataframe(df, periods=12)
+future = loaded_model.make_future_dataframe(df, periods=12)
 
 
-forecast = m.predict(future,
-                     # raw=False,
-                     # decompose=False
-                     )
+forecast = loaded_model.predict(future,
+                                # raw=False,
+                                # decompose=False
+                                )
 
 forecast_trimmed = forecast[forecast.y.isnull()].set_index('ds')
 forecast_trimmed.to_csv('forecasts/stretcher_occupancy_raw.csv')
