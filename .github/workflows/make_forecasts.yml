@@ -32,30 +32,44 @@ jobs:
           timezone: America/Montreal
       - name: Forecast Inflow
         if: always()
+        env:
+          COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/forecast_inflow.py
       - name: Forecast Inflow With Weather
         if: always()
+        env:
+          COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/forecast_inflow_with_weather.py
       - name: Forecast Prepod
         if: always()
+        env:
+          COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/forecast_prepod.py
       - name: Forecast VerticalTBS
         if: always()
+        env:
+          COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/forecast_verticalTBS.py
       - name: Stretcher Occupancy
         if: always()
+        env:
+          COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/forecast_stretcher_occupancy.py
       - name: Forecast Daily Visits
         if: always()
+        env:
+          COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/forecast_daily_visits.py
       - name: Forecast Daily Visits With Weather
-        if: always() 
+        if: always()
+        env:
+          COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/forecast_daily_visits_with_weather.py
       - uses: stefanzweifel/git-auto-commit-action@v4
