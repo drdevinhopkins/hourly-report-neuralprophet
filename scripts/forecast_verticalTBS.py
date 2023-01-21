@@ -9,7 +9,7 @@ api = comet_ml.api.API(comet_ml_api_key)
 api.download_registry_model("drdevinhopkins", "verticaltbs",
                             version="1.0.0", output_path="./comet-ml-models/", expand=True, stage=None)
 
-loaded_model = load("comet-ml-models/verticaltbs.np")
+loaded_model = load("comet-ml-models/verticalTBS.np")
 
 set_log_level("ERROR")
 
