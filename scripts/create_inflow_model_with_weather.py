@@ -28,6 +28,15 @@ regressors = df.columns.tolist()
 regressors.remove('y')
 regressors.remove('ds')
 
+weather = pd.read_csv(
+    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/weatherArchiveAndForecast.csv')
+weather.ds = pd.to_datetime(weather.ds)
+
+df = df.merge(weather, on='ds')
+
+weather_regressors = ['temp', 'dew', 'humidity',
+                      'precip', 'windspeed', 'sealevelpressure']
+
 params = {
     # growth='off',
     'yearly_seasonality': False,
@@ -46,6 +55,8 @@ params = {
 m = NeuralProphet(**params)
 m = m.add_lagged_regressor(names=regressors)
 m = m.add_country_holidays("CA")
+for reg in weather_regressors:
+    m = m.add_future_regressor(name=reg)
 metrics = m.fit(df,
                 freq='H',
                 # progress='plot'
