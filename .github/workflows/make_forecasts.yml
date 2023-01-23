@@ -64,6 +64,7 @@ jobs:
         if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
+          DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
         run: |
           python scripts/forecast_daily_visits.py
       - name: Forecast Daily Visits With Weather
