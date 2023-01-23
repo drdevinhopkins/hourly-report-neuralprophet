@@ -2,7 +2,12 @@ import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, load
 import comet_ml
 import os
+from deta import Deta
+from dotenv import load_dotenv
 
+load_dotenv()
+
+deta = Deta(os.environ.get("DETA_PROJECT_KEY"))
 comet_ml_api_key = os.environ.get("COMET_ML_API_KEY")
 api = comet_ml.api.API(comet_ml_api_key)
 
@@ -60,3 +65,7 @@ for ds in pd.date_range(start=start, periods=forecast_length, freq='H'):
         {'ds': ds, 'inflow': forecast_trimmed.loc[ds]['yhat'+str(i)], 'timestamp': timestamp})
 forecast_output = pd.DataFrame(forecast_output_list)
 forecast_output.to_csv('forecasts/inflow.csv', index=False)
+
+forecasts = deta.Drive("forecasts")
+
+forecasts.put('inflow.csv', path='forecasts/inflow.csv')
