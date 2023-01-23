@@ -5,6 +5,7 @@ import os
 from deta import Deta
 from dotenv import load_dotenv
 
+set_log_level("ERROR")
 load_dotenv()
 
 deta = Deta(os.environ.get("DETA_PROJECT_KEY"))
@@ -14,7 +15,6 @@ api = comet_ml.api.API(comet_ml_api_key)
 api.download_registry_model("drdevinhopkins", "daily-visits-with-weather",
                             version="1.0.0", output_path="comet-ml-models", expand=True, stage=None)
 
-set_log_level("ERROR")
 
 # loaded_model = pickle.load(
 #     open('models/daily_visits_forecast_model_with_weather.pkl', 'rb'))
