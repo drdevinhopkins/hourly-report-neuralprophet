@@ -7,8 +7,8 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: "0 1 * * *"
-  # push:
-  #   branches: [main]
+  push:
+    branches: [main]
 # on:
 #   workflow_run:
 #     workflows: ["Update data with current hourly report"]
@@ -75,6 +75,12 @@ jobs:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_daily_visits_model_with_weather.py
+      - name: Save models to Deta Drive
+        if: always()
+        env:
+          DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
+        run: |
+          python scripts/save_models_to_deta.py
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           push_options: '--force'
