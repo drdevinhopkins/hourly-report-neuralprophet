@@ -59,7 +59,7 @@ df.ds = pd.to_datetime(df.ds)
 df = df.sort_values(by='ds')
 df = df.reset_index(drop=True)
 
-last_timestamp = df.loc[len(df)-1].ds
+# last_timestamp = df.loc[len(df)-1].ds
 
 weather = pd.read_csv(
     'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-weather.csv')
@@ -68,14 +68,14 @@ weather.ds = pd.to_datetime(weather.ds)
 weather = weather[['ds', 'tempmax', 'tempmin', 'temp', 'feelslikemax', 'feelslikemin', 'feelslike', 'dew', 'humidity', 'precip', 'precipcover', 'snow',
                    'snowdepth', 'windgust', 'windspeed', 'sealevelpressure', 'cloudcover', 'visibility', 'solarradiation', 'solarenergy', 'uvindex', 'moonphase']]
 
-df = df.merge(weather, on='ds')
+df = df.merge(weather, how='right', on='ds', suffixes='')
 
 
-future = pd.concat(
-    [df.tail(4*7+1), weather[weather.ds > last_timestamp].head(8)])
+# future = pd.concat(
+#     [df.tail(4*7+1), weather[weather.ds > last_timestamp].head(8)])
 
 
-forecast = loaded_model.predict(future)
+forecast = loaded_model.predict(df)
 
 forecast_trimmed = forecast[forecast.y.isnull()].set_index('ds')
 forecast_trimmed.to_csv('forecasts/daily_visits_with_weather_raw.csv')
@@ -159,16 +159,16 @@ weather = pd.read_csv(
 weather.ds = pd.to_datetime(weather.ds)
 weather = weather.sort_values(by='ds', ascending=True)
 
-last_timestamp = df.loc[len(df)-1].ds
+# last_timestamp = df.loc[len(df)-1].ds
 
-df = df.merge(weather, on='ds')
-
-
-future = pd.concat(
-    [df.tail(48), weather[weather.ds > last_timestamp].head(12)])
+df = df.merge(weather, how='right', on='ds', suffixes='')
 
 
-forecast = loaded_model.predict(future)
+# future = pd.concat(
+#     [df.tail(48), weather[weather.ds > last_timestamp].head(12)])
+
+
+forecast = loaded_model.predict(df)
 
 forecast_trimmed = forecast[forecast.y.isnull()].set_index('ds')
 forecast_trimmed.to_csv('forecasts/inflow_with_weather_raw.csv')
@@ -309,7 +309,7 @@ forecast_output = pd.DataFrame(forecast_output_list)
 forecast_output.to_csv('forecasts/verticalTBS.csv', index=False)
 
 
-### SAVE FORECASTS TO DETA DRIVE
+# SAVE FORECASTS TO DETA DRIVE
 
 forecasts = deta.Drive("forecasts")
 
