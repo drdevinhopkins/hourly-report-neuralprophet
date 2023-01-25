@@ -39,11 +39,11 @@ weather = weather.sort_values(by='ds', ascending=True)
 
 last_timestamp = df.loc[len(df)-1].ds
 
-df = df.merge(weather, on='ds')
+df = df.merge(weather, how='right', on='ds', suffixes='')
 # df['ID'] = 'test'
 
-future = pd.concat(
-    [df.tail(48), weather[weather.ds > last_timestamp].head(12)])
+# future = pd.concat(
+#     [df.tail(48), weather[weather.ds > last_timestamp].head(12)])
 # future['ID'] = 'test'
 
 # future = loaded_model.make_future_dataframe(df, periods=12) # periods=m.n_forecasts, n_historic_predictions=False
@@ -60,7 +60,7 @@ future = pd.concat(
 # forecast_output.to_csv('forecasts/inflow_with_weather.csv', index=False)
 
 
-forecast = loaded_model.predict(future,
+forecast = loaded_model.predict(df,
                                 # raw=False,
                                 # decompose=False
                                 )
