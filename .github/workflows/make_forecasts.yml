@@ -30,6 +30,11 @@ jobs:
         uses: zcong1993/setup-timezone@master
         with:
           timezone: America/Montreal
+      - name: Get data from Deta
+        env:
+          DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
+        run: |
+          python scripts/getdata.py
       - name: Make all forecasts
         if: always()
         env:
@@ -86,7 +91,7 @@ jobs:
       #     DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
       #   run: |
       #     python scripts/forecast_daily_visits_with_weather.py
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: always()
-        with:
-          push_options: '--force'
+      # - uses: stefanzweifel/git-auto-commit-action@v4
+      #   if: always()
+      #   with:
+      #     push_options: '--force'
