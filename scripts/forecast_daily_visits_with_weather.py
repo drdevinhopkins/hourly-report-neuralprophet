@@ -21,7 +21,7 @@ api.download_registry_model("drdevinhopkins", "daily-visits-with-weather",
 loaded_model = load("comet-ml-models/daily-visits-with-weather.np")
 
 df = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-visits.csv')
+    'data/daily-visits.csv')
 df.ds = pd.to_datetime(df.ds)
 df = df.sort_values(by='ds')
 df = df.reset_index(drop=True)
@@ -29,7 +29,7 @@ df = df.reset_index(drop=True)
 last_timestamp = df.loc[len(df)-1].ds
 
 weather = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-weather.csv')
+    'data/daily-weather.csv')
 weather = weather.rename(columns={'datetime': 'ds'})
 weather.ds = pd.to_datetime(weather.ds)
 weather = weather[['ds', 'tempmax', 'tempmin', 'temp', 'feelslikemax', 'feelslikemin', 'feelslike', 'dew', 'humidity', 'precip', 'precipcover', 'snow',

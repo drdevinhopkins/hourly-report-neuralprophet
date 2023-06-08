@@ -21,7 +21,7 @@ set_log_level("ERROR")
 loaded_model = load("comet-ml-models/daily-visits.np")
 
 df = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-visits.csv')
+    'data/daily-visits.csv')
 df.ds = pd.to_datetime(df.ds)
 df = df.sort_values(by='ds')
 # df['ID'] = 'test'
