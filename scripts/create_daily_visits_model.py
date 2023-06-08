@@ -15,7 +15,7 @@ api = API(os.environ.get('COMET_ML_API_KEY'))
 set_log_level("ERROR")
 
 df = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-visits.csv')
+    'data/daily-visits.csv')
 df.ds = pd.to_datetime(df.ds)
 df = df.sort_values(by='ds')
 

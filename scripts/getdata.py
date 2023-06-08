@@ -3,6 +3,7 @@ import os
 
 deta = Deta(os.environ.get("DETA_PROJECT_KEY"))
 
+
 drive = deta.Drive("data")
 
 for file in drive.list()['names']:

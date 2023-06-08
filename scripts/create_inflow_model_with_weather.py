@@ -16,8 +16,7 @@ set_log_level("ERROR")
 
 target_column = 'Total Inflow hrly'
 
-df = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/since-2020.csv')
+df = pd.read_csv(data/since-2020.csv')
 df.ds = pd.to_datetime(df.ds)
 df = df.drop(['Date', 'Time'], axis=1)
 df = df.sort_values(by='ds', ascending=True)
@@ -28,8 +27,7 @@ regressors = df.columns.tolist()
 regressors.remove('y')
 regressors.remove('ds')
 
-weather = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/weatherArchiveAndForecast.csv')
+weather = pd.read_csv('data/weatherArchiveAndForecast.csv')
 weather.ds = pd.to_datetime(weather.ds)
 
 df = df.merge(weather, on='ds')

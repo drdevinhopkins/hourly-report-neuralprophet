@@ -17,13 +17,11 @@ api = API(os.environ.get('COMET_ML_API_KEY'))
 
 set_log_level("ERROR")
 
-df = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-visits.csv')
+df = pd.read_csv('data/daily-visits.csv')
 df.ds = pd.to_datetime(df.ds)
 df = df.sort_values(by='ds')
 
-weather = pd.read_csv(
-    'https://raw.githubusercontent.com/drdevinhopkins/hourly-report/main/data/daily-weather.csv')
+weather = pd.read_csv('data/daily-weather.csv')
 weather = weather.rename(columns={'datetime': 'ds'})
 weather.ds = pd.to_datetime(weather.ds)
 weather = weather[['ds', 'tempmax', 'tempmin', 'temp', 'feelslikemax', 'feelslikemin', 'feelslike', 'dew', 'humidity', 'precip', 'precipcover', 'snow',
