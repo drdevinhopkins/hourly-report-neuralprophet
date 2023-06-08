@@ -16,7 +16,7 @@ set_log_level("ERROR")
 
 target_column = 'Total Inflow hrly'
 
-df = pd.read_csv(data/since-2020.csv')
+df = pd.read_csv('data/since-2020.csv')
 df.ds = pd.to_datetime(df.ds)
 df = df.drop(['Date', 'Time'], axis=1)
 df = df.sort_values(by='ds', ascending=True)
