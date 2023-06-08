@@ -33,6 +33,11 @@ jobs:
         uses: zcong1993/setup-timezone@master
         with:
           timezone: America/Montreal
+      - name: Get data from Deta
+        env:
+          DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
+        run: |
+          python scripts/getdata.py
       - name: Create Inflow Model
         if: always()
         env:
@@ -81,6 +86,6 @@ jobs:
           DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
         run: |
           python scripts/save_models_to_deta.py
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          push_options: '--force'
+#       - uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           push_options: '--force'
