@@ -39,49 +39,49 @@ jobs:
         run: |
           python scripts/getdata.py
       - name: Create Inflow Model
-        if: always()
+#         if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_inflow_model.py
       - name: Create Inflow Model with Weather
-        if: always()
+#         if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_inflow_model_with_weather.py
       - name: Create Prepod Model
-        if: always()
+#         if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_prepod_model.py
       - name: Create VerticalTBS Model
-        if: always()
+#         if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_verticalTBS_model.py
       - name: Create Stretcher Occupancy Model
-        if: always()
+#         if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_stretcher_occupancy_model.py
       - name: Create Daily Visits Model
-        if: always()
+#         if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_daily_visits_model.py
       - name: Create Daily Visits Model With Weather
-        if: always()
+#         if: always()
         env:
           COMET_ML_API_KEY: ${{ secrets.COMET_ML_API_KEY }}
         run: |
           python scripts/create_daily_visits_model_with_weather.py
       - name: Save models to Deta Drive
-        if: always()
+#         if: always()
         env:
           DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
         run: |
