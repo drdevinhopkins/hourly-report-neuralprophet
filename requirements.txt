@@ -1,4 +1,4 @@
-neuralprophet==0.5.1
+neuralprophet
 comet_ml
 python-dotenv
 deta
