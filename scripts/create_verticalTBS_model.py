@@ -4,6 +4,9 @@ import pandas as pd
 from neuralprophet import NeuralProphet, set_log_level, save
 import pickle
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 experiment = Experiment(
     api_key=os.environ.get('COMET_ML_API_KEY'),

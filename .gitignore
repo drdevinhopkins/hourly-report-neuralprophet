@@ -128,6 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-/comet-ml-models
-/models
-/lightning_logs
+comet-ml-models/
+models/
+lightning_logs/
+data/
+forecasts/
